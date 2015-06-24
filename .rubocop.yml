@@ -1,0 +1,6 @@
+LineLength:
+  Max: 200
+AsciiComments:
+  Enabled: false
+SingleSpaceBeforeFirstArg:
+  Enabled: false
