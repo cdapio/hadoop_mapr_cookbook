@@ -54,7 +54,7 @@ when 'rhel'
     action :add
   end
 
-  # TODO: include epel if mapr-metrics is enaabled
+  # TODO: include epel if mapr-metrics is enabled
 
 when 'debian'
 
