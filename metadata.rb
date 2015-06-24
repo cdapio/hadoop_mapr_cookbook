@@ -8,9 +8,9 @@ version          '0.1.0'
 
 depends 'yum', '>= 3.0'
 
- %w(apt).each do |cb|
-   depends cb
- end
+%w(apt).each do |cb|
+  depends cb
+end
 
 # %w(apt selinux sysctl ulimit).each do |cb|
 #   depends cb
