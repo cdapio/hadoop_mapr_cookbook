@@ -17,14 +17,6 @@
 # limitations under the License.
 #
 
-# Ensure that we have the proper LWRPs available
-case node['platform_family']
-when 'rhel'
-  include_recipe 'yum'
-when 'debian'
-  include_recipe 'apt'
-end
-
 mapr_release = node['hadoop_mapr']['distribution_version'].gsub(/^v/, '')
 
 # Per http://doc.mapr.com/display/MapR/JDK+Support+Matrix
@@ -34,6 +26,9 @@ end
 
 case node['platform_family']
 when 'rhel'
+  # Ensure that we have the proper LWRPs available
+  include_recipe 'yum'
+
   yum_repo_url = "http://package.mapr.com/releases/v#{mapr_release}/redhat"
   yum_ecosystem_repo_url = "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/redhat"
   yum_repo_key_url = 'http://package.mapr.com/releases/pub/maprgpg.key'
@@ -57,6 +52,8 @@ when 'rhel'
   # TODO: include epel if mapr-metrics is enabled
 
 when 'debian'
+  # Ensure that we have the proper LWRPs available
+  include_recipe 'apt'
 
   apt_repo_url = "http://package.mapr.com/releases/v#{mapr_release}/ubuntu"
   apt_ecosystem_repo_url = "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/ubuntu"
