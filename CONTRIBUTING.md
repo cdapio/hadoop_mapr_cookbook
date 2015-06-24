@@ -1,6 +1,6 @@
 # Contributing to hadoop_mapr_cookbook
 
-If you want to help make the hadoop cookbook better, by adding new features, fixing bugs, or even suggesting improvements to something that's already there, here's how you can contribute:
+If you want to help make the hadoop_mapr cookbook better, by adding new features, fixing bugs, or even suggesting improvements to something that's already there, here's how you can contribute:
 
  * Fork hadoop_mapr_cookbook into your own GitHub repository
  * Create a topic branch with an appropriate name

@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: hadoop
+# Cookbook Name:: hadoop_mapr
 # Recipe:: repo
 #
 # Copyright © 2013-2015 Cask Data, Inc.
