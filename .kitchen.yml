@@ -66,7 +66,3 @@ suites:
           accept_oracle_download_terms: true
       hadoop_mapr:
         distribution_version: '4.1.0'
-  - name: broken
-    run_list:
-      - recipe[hadoop::default]
-    attributes: { hadoop: { distribution: 'broken' } }
