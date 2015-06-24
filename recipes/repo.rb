@@ -17,7 +17,6 @@
 # limitations under the License.
 #
 
-
 # Ensure that we have the proper LWRPs available
 case node['platform_family']
 when 'rhel'
@@ -29,9 +28,9 @@ end
 mapr_release = node['hadoop_mapr']['distribution_version'].gsub(/^v/, '')
 
 # Per http://doc.mapr.com/display/MapR/JDK+Support+Matrix
-#if node['hadoop_mapr']['distribution_version'].to_i >= 4 && node.key?('java') && node['java'].key?('jdk_version') && node['java']['jdk_version'].to_i < 7
-#  Chef::Application.fatal!('MapR 4.x and above require Java 7 or higher')
-#end
+if node['hadoop_mapr']['distribution_version'].to_i >= 4 && node.key?('java') && node['java'].key?('jdk_version') && node['java']['jdk_version'].to_i < 7
+  Chef::Application.fatal!('MapR 4.x and above require Java 7 or higher')
+end
 
 case node['platform_family']
 when 'rhel'
@@ -39,17 +38,17 @@ when 'rhel'
   yum_ecosystem_repo_url = "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/redhat"
   yum_repo_key_url = 'http://package.mapr.com/releases/pub/maprgpg.key'
 
-  yum_repository "maprtech" do
-    name "maprtech"
-    description "MapR Technologies"
+  yum_repository 'maprtech' do
+    name 'maprtech'
+    description 'MapR Technologies'
     url yum_repo_url
     gpgkey yum_repo_key_url
     action :add
   end
 
-  yum_repository "maprecosystem" do
-    name "maprecosystem"
-    description "MapR Technologies"
+  yum_repository 'maprecosystem' do
+    name 'maprecosystem'
+    description 'MapR Technologies'
     url yum_ecosystem_repo_url
     gpgkey yum_repo_key_url
     action :add
@@ -63,7 +62,7 @@ when 'debian'
   apt_ecosystem_repo_url = "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/ubuntu"
   apt_repo_key_url = 'http://package.mapr.com/releases/pub/maprgpg.key'
 
-  apt_repository "maprtech" do
+  apt_repository 'maprtech' do
     uri apt_repo_url
     key apt_repo_key_url
     distribution 'mapr'
@@ -71,11 +70,10 @@ when 'debian'
     action :add
   end
 
-  apt_repository "maprecosystem" do
+  apt_repository 'maprecosystem' do
     uri apt_ecosystem_repo_url
     key apt_repo_key_url
     distribution 'binary/'
     action :add
   end
 end
-
