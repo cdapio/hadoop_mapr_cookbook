@@ -28,7 +28,7 @@ end
 mapr_release = node['hadoop_mapr']['distribution_version'].gsub(/^v/, '')
 
 # Per http://doc.mapr.com/display/MapR/JDK+Support+Matrix
-if node['hadoop_mapr']['distribution_version'].to_i >= 4 && node.key?('java') && node['java'].key?('jdk_version') && node['java']['jdk_version'].to_i < 7
+if mapr_release.to_i >= 4 && node.key?('java') && node['java'].key?('jdk_version') && node['java']['jdk_version'].to_i < 7
   Chef::Application.fatal!('MapR 4.x and above require Java 7 or higher')
 end
 
