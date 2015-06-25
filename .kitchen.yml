@@ -1,0 +1,36 @@
+---
+driver:
+  name: vagrant
+  customize:
+    cpus: 2
+    memory: 4096
+
+provisioner:
+  name: chef_solo
+  require_chef_omnibus: true
+
+platforms:
+  - name: centos-6.6
+  - name: debian-6.0.10
+    run_list:
+    - apt::default
+  - name: ubuntu-12.04
+    run_list:
+    - apt::default
+  - name: ubuntu-14.04
+    run_list:
+    - apt::default
+
+suites:
+  - name: mapr410
+    run_list:
+      - recipe[java::default]
+      - recipe[hadoop_mapr::default]
+    attributes:
+      java:
+        install_flavor: 'oracle'
+        jdk_version: 7
+        oracle:
+          accept_oracle_download_terms: true
+      hadoop_mapr:
+        distribution_version: '4.1.0'
