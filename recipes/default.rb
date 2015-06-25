@@ -18,3 +18,4 @@
 #
 
 include_recipe 'hadoop_mapr::repo'
+include_recipe 'hadoop_mapr::_system_tuning'
