@@ -19,3 +19,18 @@
 
 include_recipe 'hadoop_mapr::repo'
 include_recipe 'hadoop_mapr::_system_tuning'
+
+if node['hadoop_mapr']['create_mapr_user'].to_s == 'true'
+  # create 'mapr' group
+  group 'mapr' do
+    gid node['hadoop_mapr']['mapr_user']['gid']
+    action :create
+  end
+
+  # create 'mapr' user
+  user 'mapr' do
+    uid node['hadoop_mapr']['mapr_user']['uid']
+    gid node['hadoop_mapr']['mapr_user']['gid']
+    action :create
+  end
+end
