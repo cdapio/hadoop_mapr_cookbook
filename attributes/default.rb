@@ -17,4 +17,11 @@
 # limitations under the License.
 #
 
+# MapR version to install
 default['hadoop_mapr']['distribution_version'] = '4.1.0'
+
+# MapR requires the 'mapr' user and group with a consistent uid/gid across the cluster
+# Create MapR user if enabled (otherwise delegates to packages)
+default['hadoop_mapr']['create_mapr_user'] = true
+default['hadoop_mapr']['mapr_user']['uid'] = 5000
+default['hadoop_mapr']['mapr_user']['gid'] = 5000
