@@ -3,8 +3,8 @@ require 'spec_helper'
 describe 'hadoop_mapr::_system_tuning' do
   context 'on Centos 6.6' do
     let(:chef_run) do
-      ChefSpec::SoloRunner.new(platform: 'centos', version: 6.6) do |node|
-        allow(::File).to receive_messages(:file? => true)
+      ChefSpec::SoloRunner.new(platform: 'centos', version: 6.6) do |_node|
+        allow(::File).to receive_messages(file?: true)
         stub_command(%r{/sys/kernel/mm/(.*)transparent_hugepage/defrag}).and_return(false)
       end.converge(described_recipe)
     end

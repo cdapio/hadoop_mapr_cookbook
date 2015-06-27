@@ -24,8 +24,6 @@ describe 'hadoop_mapr::default' do
       link = chef_run.link('/opt/mapr')
       expect(link).to link_to('/some/data/disk')
     end
-
-
   end
 
   context 'on Ubuntu 12.04' do
