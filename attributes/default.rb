@@ -20,6 +20,9 @@
 # MapR version to install
 default['hadoop_mapr']['distribution_version'] = '4.1.0'
 
+# MapR base install dir. Changing this results in a symlink from /opt/mapr to the new location
+default['hadoop_mapr']['install_dir'] = '/opt/mapr'
+
 # MapR requires the 'mapr' user and group with a consistent uid/gid across the cluster
 # Create MapR user if enabled (otherwise delegates to packages)
 default['hadoop_mapr']['create_mapr_user'] = true
