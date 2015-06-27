@@ -3,7 +3,10 @@ require 'spec_helper'
 describe 'hadoop_mapr::_system_tuning' do
   context 'on Centos 6.6' do
     let(:chef_run) do
-      ChefSpec::SoloRunner.new(platform: 'centos', version: 6.6).converge(described_recipe)
+      ChefSpec::SoloRunner.new(platform: 'centos', version: 6.6) do |node|
+        allow(::File).to receive_messages(:file? => true)
+        stub_command(%r{/sys/kernel/mm/(.*)transparent_hugepage/defrag}).and_return(false)
+      end.converge(described_recipe)
     end
 
     it 'disables overcommit' do
@@ -16,6 +19,10 @@ describe 'hadoop_mapr::_system_tuning' do
 
     it 'reduce tcp retries ' do
       expect(chef_run).to apply_sysctl_param('net.ipv4.tcp_retries2')
+    end
+
+    it 'disables transparent hugepage compaction' do
+      expect(chef_run).to run_execute('disable-transparent-hugepage-compaction')
     end
   end
 
