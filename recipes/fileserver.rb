@@ -24,3 +24,11 @@ pkg = 'mapr-fileserver'
 package pkg do
   action :install
 end
+
+# Warden service definition here since mapr-fileserver should be on every cluster node.
+# The warden service is part of mapr-core-internal, which is a dependency of fileserver
+service 'mapr-warden' do
+  status_command "service mapr-warden status"
+  supports [:restart => true, :reload => true, :status => true]
+  action :nothing
+end
