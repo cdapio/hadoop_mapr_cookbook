@@ -20,17 +20,17 @@
 include_recipe 'hadoop_mapr::repo'
 include_recipe 'hadoop_mapr::_system_tuning'
 
-# symlink mapr base install dir
+# Create target install dir
+directory node['hadoop_mapr']['install_dir'] do
+  action :create
+  recursive true
+end
+
+# Symlink alternate mapr base install dir
 unless node['hadoop_mapr']['install_dir'] == '/opt/mapr'
   # Fail if /opt/mapr already exists since we can't replace it with a symlink
   if ::File.directory?('/opt/mapr') && !::File.symlink?('/opt/mapr')
     Chef::Application.fatal!("Cannot install to #{node['hadoop_mapr']['install_dir']} since previous installation exists in /opt/mapr")
-  end
-
-  # Create target install dir
-  directory node['hadoop_mapr']['install_dir'] do
-    action :create
-    recursive true
   end
 
   # Symlink /opt/mapr
