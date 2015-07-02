@@ -24,7 +24,7 @@ include_recipe 'hadoop_mapr::default'
 include_recipe 'hadoop_mapr::fileserver'
 
 service 'mapr-warden' do
-  status_command "service mapr-warden status"
-  supports [:restart => true, :reload => true, :status => true]
+  status_command 'service mapr-warden status'
+  supports [restart: true, reload: true, status: true]
   action :nothing
 end
