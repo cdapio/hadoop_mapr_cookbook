@@ -20,8 +20,6 @@
 actions :run
 default_action :run
 
-# /opt/mapr/server/configure.sh -C mapr-1724-1000.dev.continuuity.net -Z mapr-1724-1000.dev.continuuity.net -RM mapr-1724-1000.dev.continuuity.net -HS mapr-1724-1000.dev.continuuity.net -N mapr1724 -noDB -D /dev/sdc
-
 # -C
 attribute :cldb_list,             kind_of: [Array, String],           default: nil
 # -M
@@ -29,36 +27,13 @@ attribute :cldb_mh_list,          kind_of: [Array, String],           default: n
 # -Z
 attribute :zookeeper_list,        kind_of: [Array, String],           default: nil, required: true
 # -D
-attribute :disks,                 kind_of: [String, Array],           default: nil
-# -F
-attribute :disks_file,            kind_of: String,                    default: nil
-# -N
 attribute :cluster_name,          kind_of: String,                    default: nil, name_attribute: true
 # -v
-attribute :verbose,               kind_of: [TrueClass, FalseClass],   default: false
-# -disk-opts
-attribute :disk_opts,             kind_of: [String, Array],           default: nil
-# -no-autostart
-attribute :autostart,             kind_of: [TrueClass, FalseClass],   default: true
-# -R
 attribute :refresh_roles,         kind_of: [TrueClass, FalseClass],   default: false
 # -c
 attribute :client_only_mode,      kind_of: [TrueClass, FalseClass],   default: false
-# --isvm
-# -M7 (deprecated)
-# -noDB
-# -R
-# -a | --create-user
-# -f
-# -genkeys
-# -nocerts
-# -S | -secure
-# -maprpam
-# -no-auto-permission-update
-# 
 
-
-# Additional options will simply be flattened and passed through as args to configure.sh
-#   ex: [ '--isvm', { '-HS': 'hostA' } ]
+# Additional args will simply be flattened and passed through as args to configure.sh
+#   example input: [ '--isvm', { '-HS': 'hostA' } ]
 #   results in: --isvm -HS hostA
-attribute :additional_opts,       kind_of: [String, Array],           default: nil
+attribute :args,       kind_of: [String, Array],           default: nil
