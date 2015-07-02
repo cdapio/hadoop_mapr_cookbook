@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: hadoop_mapr
-# Recipe:: eco_hive_server2
+# Recipe:: hive_server2
 #
 # Copyright © 2013-2015 Cask Data, Inc.
 #

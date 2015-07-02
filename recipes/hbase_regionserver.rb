@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: hadoop_mapr
-# Recipe:: eco_hbase_regionserver
+# Recipe:: hbase_regionserver
 #
 # Copyright © 2013-2015 Cask Data, Inc.
 #
