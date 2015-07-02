@@ -17,6 +17,9 @@
 # limitations under the License.
 #
 
+# LWRP to configure a MapR cluster using configure.sh
+# See http://doc.mapr.com/display/MapR/configure.sh for full usage/docs
+
 actions :run
 default_action :run
 
