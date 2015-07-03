@@ -20,8 +20,7 @@
 include_recipe 'hadoop_mapr::default'
 
 # The warden service is part of mapr-core-internal, which is a dependency of many mapr services.
-# Setting fileserver as the dependency here since it should be installed on every cluster node
-include_recipe 'hadoop_mapr::fileserver'
+package 'mapr-core-internal'
 
 service 'mapr-warden' do
   status_command 'service mapr-warden status'
