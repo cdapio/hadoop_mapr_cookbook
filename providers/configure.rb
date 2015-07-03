@@ -43,10 +43,12 @@ action :run do
     end
   end
 
-  # zookeeper_list (required)
-  zookeeper_list = new_resource.zookeeper_list
-  zookeeper_arg = zookeeper_list.is_a?(Array) ? zookeeper_list.join(',') : zookeeper_list
-  args += ['-Z', zookeeper_arg]
+  # zookeeper_list
+  if new_resource.zookeeper_list
+    zookeeper_list = new_resource.zookeeper_list
+    zookeeper_arg = zookeeper_list.is_a?(Array) ? zookeeper_list.join(',') : zookeeper_list
+    args += ['-Z', zookeeper_arg]
+  end
 
   # refresh_roles
   args += ['-R'] if new_resource.refresh_roles == true
