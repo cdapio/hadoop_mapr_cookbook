@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe 'java::default'
+
 include_recipe 'hadoop_mapr::repo'
 include_recipe 'hadoop_mapr::_system_tuning'
 
