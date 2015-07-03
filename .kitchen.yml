@@ -26,6 +26,14 @@ suites:
     run_list:
       - recipe[java::default]
       - recipe[hadoop_mapr::default]
+      - recipe[hadoop_mapr::fileserver]
+      - recipe[hadoop_mapr::cldb]
+      - recipe[hadoop_mapr::zookeeper]
+      - recipe[hadoop_mapr::nfs]
+      - recipe[hadoop_mapr::gateway]
+      - recipe[hadoop_mapr::resourcemanager]
+      - recipe[hadoop_mapr::nodemanager]
+      - recipe[hadoop_mapr::historyserver]
     attributes:
       java:
         install_flavor: 'oracle'
