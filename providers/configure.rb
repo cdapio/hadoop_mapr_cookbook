@@ -26,7 +26,7 @@ action :run do
   # cldb_list
   if new_resource.cldb_list
     cldb_list = new_resource.cldb_list
-    cldb_arg = cldb_list.join(',') if cldb_list.is_a?(Array)
+    cldb_arg = cldb_list.is_a?(Array) ? cldb_list.join(',') : cldb_list
     args += ['-C', cldb_arg]
   end
 
@@ -45,7 +45,7 @@ action :run do
 
   # zookeeper_list (required)
   zookeeper_list = new_resource.zookeeper_list
-  zookeeper_arg = zookeeper_list.join(',') if cldb_list.is_a?(Array)
+  zookeeper_arg = zookeeper_list.is_a?(Array) ? zookeeper_list.join(',') : zookeeper_list
   args += ['-Z', zookeeper_arg]
 
   # refresh_roles
