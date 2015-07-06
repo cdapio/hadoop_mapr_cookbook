@@ -34,7 +34,11 @@ default['hadoop_mapr']['create_mapr_user'] = true
 default['hadoop_mapr']['mapr_user']['uid'] = 5000
 default['hadoop_mapr']['mapr_user']['gid'] = 5000
 
-# Default options for configure.sh
+# list of data disks
+default['hadoop_mapr']['disk_list'] = [ nil ]
+
+# Default/common options for configure.sh
+default['hadoop_mapr']['configure_sh']['cluster_name'] = 'my.chef.cluster.com'
 default['hadoop_mapr']['configure_sh']['cldb_list'] = node['fqdn']
 default['hadoop_mapr']['configure_sh']['cldb_mh_list'] = nil
 default['hadoop_mapr']['configure_sh']['zookeeper_list'] = node['fqdn']
