@@ -50,6 +50,11 @@ action :run do
     args += ['-Z', zookeeper_arg]
   end
 
+  # cluster_name
+  if new_resource.cluster_name
+    args += ['-N', new_resource.cluster_name]
+  end
+
   # refresh_roles
   args += ['-R'] if new_resource.refresh_roles == true
 
