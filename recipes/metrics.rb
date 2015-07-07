@@ -24,8 +24,3 @@ pkg = 'mapr-metrics'
 package pkg do
   action :install
 end
-
-#hadoop_mapr_configure node['hadoop_mapr']['configure_sh']['cluster_name'] do
-#  refresh_roles true
-#  action :run
-#end

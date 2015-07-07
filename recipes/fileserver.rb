@@ -24,9 +24,3 @@ pkg = 'mapr-fileserver'
 package pkg do
   action :install
 end
-
-#include_recipe 'hadoop_mapr::configure'
-#hadoop_mapr_configure node['hadoop_mapr']['configure_sh']['cluster_name'] do
-#  refresh_roles true
-#  action :run
-#end

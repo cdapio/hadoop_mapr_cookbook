@@ -25,11 +25,6 @@ package pkg do
   action :install
 end
 
-#hadoop_mapr_configure node['hadoop_mapr']['configure_sh']['cluster_name'] do
-#  refresh_roles true
-#  action :run
-#end
-
 service 'mapr-zookeeper' do
   status_command 'service mapr-zookeeper status'
   supports [restart: true, reload: true, status: true]
