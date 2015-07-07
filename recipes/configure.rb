@@ -27,9 +27,19 @@ node['hadoop_mapr']['configure_sh']['args'].each do |k,v|
     v.split(',').each do |disk|
       next if disk.nil?
 
-      mount '/data2' do
-        device disk
-        action [:umount, :disable]
+      # Chef mount resource requires the mount_point as well
+      mount_cmd = Mixlib::ShellOut.new("mount")
+      mount_cmd.run_command
+      mount_cmd.stdout.each_line do |line|
+        if line =~ /^#{disk}\son\s/
+          current_mount_point = line.split(' ')[2]
+
+          # unmount this disk
+          mount current_mount_point do
+            device disk
+            action [:umount, :disable]
+          end
+        end
       end
     end
   end
@@ -47,7 +57,7 @@ node['hadoop_mapr']['configure_sh']['args'].each do |k, v|
   end
 end
 
-hadoop_mapr_configure 'mycluster' do
+hadoop_mapr_configure node['hadoop_mapr']['configure_sh']['cluster_name'] do
   cldb_list node['hadoop_mapr']['configure_sh']['cldb_list']
   zookeeper_list node['hadoop_mapr']['configure_sh']['zookeeper_list']
   cldb_mh_list node['hadoop_mapr']['configure_sh']['cldb_mh_list']
