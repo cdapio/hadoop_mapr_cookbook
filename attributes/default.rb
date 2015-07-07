@@ -31,8 +31,12 @@ default['hadoop_mapr']['install_dir'] = '/opt/mapr'
 # MapR requires the 'mapr' user and group with a consistent uid/gid across the cluster
 # Create MapR user if enabled (otherwise delegates to packages)
 default['hadoop_mapr']['create_mapr_user'] = true
+# also used for group name
+default['hadoop_mapr']['mapr_user']['username'] = 'mapr'
 default['hadoop_mapr']['mapr_user']['uid'] = 5000
 default['hadoop_mapr']['mapr_user']['gid'] = 5000
+# openssl passwd -1 "mapr"
+default['hadoop_mapr']['mapr_user']['password'] = '$1$PZ3EjywS$2yIbJGmweAS2MzLhE0NHm0'
 
 # list of data disks
 default['hadoop_mapr']['disk_list'] = [ nil ]
