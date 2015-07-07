@@ -38,9 +38,6 @@ default['hadoop_mapr']['mapr_user']['gid'] = 5000
 # openssl passwd -1 "mapr"
 default['hadoop_mapr']['mapr_user']['password'] = '$1$PZ3EjywS$2yIbJGmweAS2MzLhE0NHm0'
 
-# list of data disks
-default['hadoop_mapr']['disk_list'] = [ nil ]
-
 # Default/common options for configure.sh
 default['hadoop_mapr']['configure_sh']['cluster_name'] = 'my.chef.cluster.com'
 default['hadoop_mapr']['configure_sh']['cldb_list'] = node['fqdn']

@@ -51,9 +51,7 @@ action :run do
   end
 
   # cluster_name
-  if new_resource.cluster_name
-    args += ['-N', new_resource.cluster_name]
-  end
+  args += ['-N', new_resource.cluster_name] if new_resource.cluster_name
 
   # refresh_roles
   args += ['-R'] if new_resource.refresh_roles == true
