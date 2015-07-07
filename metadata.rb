@@ -12,7 +12,7 @@ depends 'yum', '>= 3.0'
   depends cb
 end
 
-recommends 'java', '~> 1.21'
+depends 'java', '~> 1.21'
 
 %w(amazon centos debian redhat scientific ubuntu).each do |os|
   supports os

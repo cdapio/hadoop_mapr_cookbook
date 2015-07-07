@@ -17,6 +17,11 @@
 # limitations under the License.
 #
 
+# Java
+default['java']['install_flavor'] = 'oracle'
+default['java']['jdk_version'] = 7
+default['java']['oracle']['accept_oracle_download_terms'] = true
+
 # MapR version to install
 default['hadoop_mapr']['distribution_version'] = '4.1.0'
 
@@ -28,3 +33,10 @@ default['hadoop_mapr']['install_dir'] = '/opt/mapr'
 default['hadoop_mapr']['create_mapr_user'] = true
 default['hadoop_mapr']['mapr_user']['uid'] = 5000
 default['hadoop_mapr']['mapr_user']['gid'] = 5000
+
+# Default options for configure.sh
+default['hadoop_mapr']['configure_sh']['cldb_list'] = node['fqdn']
+default['hadoop_mapr']['configure_sh']['cldb_mh_list'] = nil
+default['hadoop_mapr']['configure_sh']['zookeeper_list'] = node['fqdn']
+default['hadoop_mapr']['configure_sh']['refresh_roles'] = false
+default['hadoop_mapr']['configure_sh']['client_only_mode'] = false

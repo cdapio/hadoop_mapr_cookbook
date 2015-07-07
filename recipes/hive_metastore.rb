@@ -19,7 +19,7 @@
 
 include_recipe 'hadoop_mapr::default'
 
-pkg = 'mapr-hive-metastore'
+pkg = 'mapr-hivemetastore'
 
 package pkg do
   action :install

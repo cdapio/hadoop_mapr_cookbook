@@ -28,7 +28,7 @@ attribute :cldb_list,             kind_of: [Array, String],           default: n
 # -M
 attribute :cldb_mh_list,          kind_of: [Array, String],           default: nil
 # -Z
-attribute :zookeeper_list,        kind_of: [Array, String],           default: nil, required: true
+attribute :zookeeper_list,        kind_of: [Array, String],           default: nil
 # -D
 attribute :cluster_name,          kind_of: String,                    default: nil, name_attribute: true
 # -v

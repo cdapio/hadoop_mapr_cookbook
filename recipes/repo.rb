@@ -46,6 +46,7 @@ when 'rhel'
     description 'MapR Technologies'
     url yum_ecosystem_repo_url
     gpgkey yum_repo_key_url
+    gpgcheck false
     action :add
   end
 
@@ -70,6 +71,7 @@ when 'debian'
   apt_repository 'maprecosystem' do
     uri apt_ecosystem_repo_url
     key apt_repo_key_url
+    trusted true
     distribution 'binary/'
     action :add
   end
