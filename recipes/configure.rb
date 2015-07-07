@@ -19,23 +19,21 @@
 
 # Unmount data disks
 node['hadoop_mapr']['configure_sh']['args'].each do |k, v|
-  if k == '-D'
-    v.split(',').each do |disk|
-      next if disk.nil?
+  next unless k == '-D'
+  v.split(',').each do |disk|
+    next if disk.nil?
 
-      # Chef mount resource requires the mount_point as well
-      mount_cmd = Mixlib::ShellOut.new('mount')
-      mount_cmd.run_command
-      mount_cmd.stdout.each_line do |line|
-        if line =~ /^#{disk}\son\s/
-          current_mount_point = line.split(' ')[2]
+    # Chef mount resource requires the mount_point as well
+    mount_cmd = Mixlib::ShellOut.new('mount')
+    mount_cmd.run_command
+    mount_cmd.stdout.each_line do |line|
+      next unless line =~ /^#{disk}\son\s/
+      current_mount_point = line.split(' ')[2]
 
-          # unmount this disk
-          mount current_mount_point do
-            device disk
-            action [:umount, :disable]
-          end
-        end
+      # unmount this disk
+      mount current_mount_point do
+        device disk
+        action [:umount, :disable]
       end
     end
   end
