@@ -17,7 +17,7 @@ at a minimum the 'warden' recipe to be included in the run_list prior to invocat
 
 ## configure
 
-The configure resource is a wrapper around the configure.sh script provided by the mapr-core-internal package.
+The configure resource is a wrapper around the configure.sh script provided by the `mapr-core-internal` package.
 
 ### Actions
 Action | Description
@@ -27,7 +27,7 @@ Action | Description
 ### Attributes
 Attribute | Type | Default Value | Description
 --------- | ---- | ------------- | -----------
-`:cldb_list` | `Array` | | The list of CLDB nodes of the cluster (hostname[:port][,hostname[:port]...])
+`:cldb_list` | Array | | The list of CLDB nodes of the cluster (hostname[:port][,hostname[:port]...])
 `:cldb_mh_list` | Array | | The list of multi-homed CLDB nodes of the cluster (hostname[:port][,hostname[:port] [hostname[:port],hostname[:port] ...])
 `:zookeeper_list` | Array | | The list of zookeeper nodes of the cluster (hostname[:port][,hostname[:port]...])
 `:cluster_name` | String | | The cluster name
