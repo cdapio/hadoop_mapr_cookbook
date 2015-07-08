@@ -12,8 +12,8 @@ Note: This cookbook is under active development and not yet ready for use.
 
 # Resources
 
-Note, the following resource(s) make use of utility scripts provided by MapR itself.  Therefore, these resources require at a minimum
-the 'warden' recipe to be included in the run_list prior to invocation.
+Note, the following resource(s) make use of utility scripts provided by MapR itself.  Therefore, these resources require
+at a minimum the 'warden' recipe to be included in the run_list prior to invocation.
 
 ## configure
 
