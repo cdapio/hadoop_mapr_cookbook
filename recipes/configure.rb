@@ -23,6 +23,7 @@ include_recipe 'hadoop_mapr::warden'
 # Unmount data disks
 node['hadoop_mapr']['configure_sh']['args'].each do |k, v|
   next unless k == '-D'
+  chef::Application.fatal!('The -D argument for configure_sh requires a value') if v.nil?
   v.split(',').each do |disk|
     next if disk.nil?
 
@@ -52,6 +53,11 @@ node['hadoop_mapr']['configure_sh']['args'].each do |k, v|
     # pass a key/value
     lwrp_args.push(k => v)
   end
+end
+
+# Ensure cluster_name is not nil
+unless node['hadoop_mapr'].key?('configure_sh') && node['hadoop_mapr']['configure_sh'].key?('cluster_name') && !node['hadoop_mapr']['configure_sh']['cluster_name'].nil?
+  Chef::Application.fatal!("node['hadoop_mapr']['configure_sh']['cluster_name'] cannot be nil")
 end
 
 # Invoke configure.sh
