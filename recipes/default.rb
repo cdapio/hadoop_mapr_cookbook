@@ -44,7 +44,7 @@ end
 # Create 'mapr' user/group
 if node['hadoop_mapr']['create_mapr_user'].to_s == 'true'
   # create 'mapr' group
-  group node['hadoop_mapr']['mapr_user']['username'] do
+  group node['hadoop_mapr']['mapr_user']['group'] do
     gid node['hadoop_mapr']['mapr_user']['gid']
     action :create
   end
