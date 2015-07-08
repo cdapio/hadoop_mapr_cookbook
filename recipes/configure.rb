@@ -17,6 +17,9 @@
 # limitations under the License.
 #
 
+# Ensure configure.sh script is installed
+include_recipe 'hadoop_mapr::warden'
+
 # Unmount data disks
 node['hadoop_mapr']['configure_sh']['args'].each do |k, v|
   next unless k == '-D'
