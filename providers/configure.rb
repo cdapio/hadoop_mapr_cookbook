@@ -50,6 +50,9 @@ action :run do
     args += ['-Z', zookeeper_arg]
   end
 
+  # cluster_name
+  args += ['-N', new_resource.cluster_name] if new_resource.cluster_name
+
   # refresh_roles
   args += ['-R'] if new_resource.refresh_roles == true
 
@@ -57,7 +60,7 @@ action :run do
   args += ['-c'] if new_resource.client_only_mode == true
 
   # additional args
-  additional_args = new_resource.args
+  additional_args = new_resource.args || []
   # Flatten any hashes or multi-level arrays within additional_args to arrays
   additional_args.map! do |x|
     if x.respond_to?('flatten')

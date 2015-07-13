@@ -31,12 +31,21 @@ default['hadoop_mapr']['install_dir'] = '/opt/mapr'
 # MapR requires the 'mapr' user and group with a consistent uid/gid across the cluster
 # Create MapR user if enabled (otherwise delegates to packages)
 default['hadoop_mapr']['create_mapr_user'] = true
+default['hadoop_mapr']['mapr_user']['username'] = 'mapr'
+default['hadoop_mapr']['mapr_user']['group'] = 'mapr'
 default['hadoop_mapr']['mapr_user']['uid'] = 5000
 default['hadoop_mapr']['mapr_user']['gid'] = 5000
+# openssl passwd -1 "mapr"
+default['hadoop_mapr']['mapr_user']['password'] = '$1$PZ3EjywS$2yIbJGmweAS2MzLhE0NHm0'
 
-# Default options for configure.sh
+# Default/common options for configure.sh, used by the 'configure' recipe
+default['hadoop_mapr']['configure_sh']['cluster_name'] = 'my.chef.cluster.com'
 default['hadoop_mapr']['configure_sh']['cldb_list'] = node['fqdn']
 default['hadoop_mapr']['configure_sh']['cldb_mh_list'] = nil
 default['hadoop_mapr']['configure_sh']['zookeeper_list'] = node['fqdn']
 default['hadoop_mapr']['configure_sh']['refresh_roles'] = false
 default['hadoop_mapr']['configure_sh']['client_only_mode'] = false
+# Add any additional attributes such as those for disk-setup here
+default['hadoop_mapr']['configure_sh']['args'] = {}
+# default['hadoop_mapr']['configure_sh']['args']['-D'] = '/dev/sdc'
+# default['hadoop_mapr']['configure_sh']['args']['-no-autostart'] = nil

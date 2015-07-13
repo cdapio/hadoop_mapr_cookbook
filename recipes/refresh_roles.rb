@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: hadoop_mapr
-# Recipe:: zookeeper
+# Recipe:: refresh_roles
 #
 # Copyright © 2013-2015 Cask Data, Inc.
 #
@@ -17,16 +17,9 @@
 # limitations under the License.
 #
 
-include_recipe 'hadoop_mapr::default'
-
-pkg = 'mapr-zookeeper'
-
-package pkg do
-  action :install
-end
-
-service 'mapr-zookeeper' do
-  status_command 'service mapr-zookeeper status'
-  supports [restart: true, reload: true, status: true]
-  action :nothing
+# Invoke configure.sh with the -R flag
+hadoop_mapr_configure node['hadoop_mapr']['configure_sh']['cluster_name'] do
+  refresh_roles true
+  action :run
+  only_if "grep \"^#{node['hadoop_mapr']['configure_sh']['cluster_name']}\" /opt/mapr/conf/mapr-clusters.conf"
 end
