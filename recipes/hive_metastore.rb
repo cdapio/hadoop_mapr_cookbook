@@ -19,6 +19,9 @@
 
 include_recipe 'hadoop_mapr::default'
 
+# configures hive-site.xml
+include_recipe 'hadoop_mapr::hive'
+
 pkg = 'mapr-hivemetastore'
 
 package pkg do

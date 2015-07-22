@@ -19,6 +19,9 @@
 
 include_recipe 'hadoop_mapr::default'
 
+# configures hbase-site.xml
+include_recipe 'hadoop_mapr::hbase'
+
 pkg = 'mapr-hbase-master'
 
 package pkg do

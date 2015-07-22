@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: hadoop_mapr
-# Recipe:: hadoop_yarn_nodemanager
+# Recipe:: hbase
 #
 # Copyright © 2013-2015 Cask Data, Inc.
 #
@@ -17,13 +17,18 @@
 # limitations under the License.
 #
 
-include_recipe 'hadoop_mapr::default'
+# Ensure conf directory exists
+package 'mapr-hbase'
 
-# configures yarn-site.xml, mapred-site.xml
-include_recipe 'hadoop_mapr::hadoop_yarn'
+# hbase-site.xml
+my_vars = { :options => node['hbase']['hbase_site'] }
 
-pkg = 'mapr-nodemanager'
-
-package pkg do
-  action :install
+template "#{hbase_conf_dir}/hbase-site.xml" do
+  source 'generic-site.xml.erb'
+  mode '0644'
+  owner 'root'
+  group 'root'
+  action :create
+  variables my_vars
+  only_if { node['hbase'].key?('hbase_site') && !node['hbase']['hbase_site'].empty? }
 end

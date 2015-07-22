@@ -24,3 +24,17 @@ pkg = 'mapr-hive'
 package pkg do
   action :install
 end
+
+# hive-site.xml
+my_vars = { :options => node['hive']['hive_site'] }
+
+template "#{hive_conf_dir}/hive-site.xml" do
+  source 'generic-site.xml.erb'
+  mode '0644'
+  owner 'root'
+  group 'root'
+  action :create
+  variables my_vars
+  only_if { node['hive'].key?('hive_site') && !node['hive']['hive_site'].empty? }
+end
+

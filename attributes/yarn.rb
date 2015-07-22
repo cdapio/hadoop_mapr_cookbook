@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: hadoop_mapr
-# Recipe:: hadoop_yarn_nodemanager
+# Attribute:: yarn
 #
 # Copyright © 2013-2015 Cask Data, Inc.
 #
@@ -17,13 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe 'hadoop_mapr::default'
-
-# configures yarn-site.xml, mapred-site.xml
-include_recipe 'hadoop_mapr::hadoop_yarn'
-
-pkg = 'mapr-nodemanager'
-
-package pkg do
-  action :install
-end
+###
+# yarn-site.xml settings - these are the MapR defaults
+###
+default['hadoop']['yarn_site']['yarn.resourcemanager.hostname'] = node['fqdn']

@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: hadoop_mapr
-# Recipe:: resourcemanager
+# Recipe:: hadoop_yarn_resourcemanager
 #
 # Copyright © 2013-2015 Cask Data, Inc.
 #
@@ -18,6 +18,9 @@
 #
 
 include_recipe 'hadoop_mapr::default'
+
+# configures yarn-site.xml, mapred-site.xml
+include_recipe 'hadoop_mapr::hadoop_yarn'
 
 pkg = 'mapr-resourcemanager'
 
