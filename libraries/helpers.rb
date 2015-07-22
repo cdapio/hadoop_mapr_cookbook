@@ -18,7 +18,7 @@
 #
 
 module HadoopMapr
-  # Helper methods for HadoopMapr cookbook
+  # Helper methods for hadoop_mapr cookbook
   module Helpers
     #
     # Get the bundled Hadoop version, from /opt/mapr/hadoopversion
@@ -28,7 +28,7 @@ module HadoopMapr
     end
 
     #
-    # Get the bundled Hadoop conf directory
+    # Get the bundled Hadoop conf directory location
     #
     def hadoop_conf_dir
       "/opt/mapr/hadoop/hadoop-#{hadoop_version}/etc/hadoop" unless hadoop_version.nil?
@@ -42,14 +42,14 @@ module HadoopMapr
     end
 
     #
-    # Get the bundled HBase conf directory
+    # Get the bundled HBase conf directory location
     #
     def hbase_conf_dir
       "/opt/mapr/hbase/hbase-#{hbase_version}/conf" unless hbase_version.nil?
     end
 
     #
-    # Get the bundled Hive conf directory
+    # Get the bundled Hive conf directory location
     #
     def hive_conf_dir
       result = nil
@@ -64,7 +64,7 @@ module HadoopMapr
     end
 
     #
-    # Get the bundled Hive sql dir
+    # Get the bundled Hive sql directory location
     #
     def hive_sql_dir
       "#{hive_conf_dir}/../scripts/metastore/upgrade" unless hive_conf_dir.nil?
