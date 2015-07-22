@@ -26,7 +26,7 @@ package pkg do
 end
 
 # hive-site.xml
-my_vars = { :options => node['hive']['hive_site'] }
+my_vars = { options: node['hive']['hive_site'] }
 
 template "#{hive_conf_dir}/hive-site.xml" do
   source 'generic-site.xml.erb'
@@ -37,4 +37,3 @@ template "#{hive_conf_dir}/hive-site.xml" do
   variables my_vars
   only_if { node['hive'].key?('hive_site') && !node['hive']['hive_site'].empty? }
 end
-

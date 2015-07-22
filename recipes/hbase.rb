@@ -21,7 +21,7 @@
 package 'mapr-hbase'
 
 # hbase-site.xml
-my_vars = { :options => node['hbase']['hbase_site'] }
+my_vars = { options: node['hbase']['hbase_site'] }
 
 template "#{hbase_conf_dir}/hbase-site.xml" do
   source 'generic-site.xml.erb'

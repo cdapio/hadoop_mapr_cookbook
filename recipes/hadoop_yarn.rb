@@ -28,7 +28,7 @@ package 'mapr-hadoop-core'
     owner 'root'
     group 'root'
     action :create
-    variables :options => node['hadoop'][sitefile]
+    variables options: node['hadoop'][sitefile]
     only_if { node['hadoop'].key?(sitefile) && !node['hadoop'][sitefile].empty? }
   end
 end
