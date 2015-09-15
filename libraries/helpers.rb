@@ -24,7 +24,7 @@ module HadoopMapr
     # Get the bundled Hadoop version, from /opt/mapr/hadoopversion
     #
     def hadoop_version
-      File.open('/opt/mapr/hadoop/hadoopversion', 'r').read.strip
+      ::File.open('/opt/mapr/hadoop/hadoopversion', 'r').read.strip
     end
 
     #
@@ -38,7 +38,7 @@ module HadoopMapr
     # Get the bundled HBase version, from /opt/mapr/hbaseversion
     #
     def hbase_version
-      File.open('/opt/mapr/hbase/hbaseversion', 'r').read.strip
+      ::File.open('/opt/mapr/hbase/hbaseversion', 'r').read.strip
     end
 
     #
@@ -55,7 +55,7 @@ module HadoopMapr
       result = nil
       # There is no hiveversion file, we can only guess and check
       %w(/opt/mapr/hive/hive-1.0/conf /opt/mapr/hive/hive-0.13/conf).each do |candidate|
-        if File.exist?("#{candidate}/hive-site.xml")
+        if ::File.exist?("#{candidate}/hive-site.xml")
           result = candidate
           break
         end
