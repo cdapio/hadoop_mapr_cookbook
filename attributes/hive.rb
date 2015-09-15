@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: hadoop_mapr
-# Attribute:: yarn
+# Attribute:: hive
 #
 # Copyright © 2013-2015 Cask Data, Inc.
 #
