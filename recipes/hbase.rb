@@ -20,15 +20,12 @@
 # Ensure conf directory exists
 package 'mapr-hbase'
 
-# hbase-site.xml
-my_vars = { options: node['hbase']['hbase_site'] }
-
 template "#{hbase_conf_dir}/hbase-site.xml" do
   source 'generic-site.xml.erb'
   mode '0644'
   owner 'root'
   group 'root'
   action :create
-  variables my_vars
+  variables { options: node['hbase']['hbase_site'] }
   only_if { node['hbase'].key?('hbase_site') && !node['hbase']['hbase_site'].empty? }
 end
