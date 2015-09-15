@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: hadoop_mapr
-# Recipe:: hbase_master
+# Recipe:: hadoop_yarn_resourcemanager
 #
 # Copyright © 2013-2015 Cask Data, Inc.
 #
@@ -19,10 +19,10 @@
 
 include_recipe 'hadoop_mapr::default'
 
-# configures hbase-site.xml
-include_recipe 'hadoop_mapr::hbase'
+# configures yarn-site.xml, mapred-site.xml
+include_recipe 'hadoop_mapr::hadoop_yarn'
 
-pkg = 'mapr-hbase-master'
+pkg = 'mapr-resourcemanager'
 
 package pkg do
   action :install

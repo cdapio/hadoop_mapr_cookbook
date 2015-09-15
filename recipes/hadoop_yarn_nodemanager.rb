@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: hadoop_mapr
-# Recipe:: refresh_roles
+# Recipe:: hadoop_yarn_nodemanager
 #
 # Copyright © 2013-2015 Cask Data, Inc.
 #
@@ -17,9 +17,13 @@
 # limitations under the License.
 #
 
-# Invoke configure.sh with the -R flag
-hadoop_mapr_configure node['hadoop_mapr']['configure_sh']['cluster_name'] do
-  refresh_roles true
-  action :run
-  only_if "grep \"^#{node['hadoop_mapr']['configure_sh']['cluster_name']}\" /opt/mapr/conf/mapr-clusters.conf"
+include_recipe 'hadoop_mapr::default'
+
+# configures yarn-site.xml, mapred-site.xml
+include_recipe 'hadoop_mapr::hadoop_yarn'
+
+pkg = 'mapr-nodemanager'
+
+package pkg do
+  action :install
 end

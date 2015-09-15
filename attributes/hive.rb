@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: hadoop_mapr
-# Recipe:: hbase_master
+# Attribute:: hive
 #
 # Copyright © 2013-2015 Cask Data, Inc.
 #
@@ -17,13 +17,10 @@
 # limitations under the License.
 #
 
-include_recipe 'hadoop_mapr::default'
+###
+# hive-site.xml settings
+###
 
-# configures hbase-site.xml
-include_recipe 'hadoop_mapr::hbase'
-
-pkg = 'mapr-hbase-master'
-
-package pkg do
-  action :install
-end
+default['hive']['hive_site']['hive.metastore.uris'] = 'thrift://localhost:9083'
+default['hive']['hive_site']['javax.jdo.option.ConnectionURL'] = 'jdbc:derby:;databaseName=/var/lib/hive/metastore/metastore_db;create=true'
+default['hive']['hive_site']['javax.jdo.option.ConnectionDriverName'] = 'org.apache.derby.jdbc.EmbeddedDriver'

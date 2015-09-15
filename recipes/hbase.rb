@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: hadoop_mapr
-# Recipe:: resourcemanager
+# Recipe:: hbase
 #
 # Copyright © 2013-2015 Cask Data, Inc.
 #
@@ -17,10 +17,15 @@
 # limitations under the License.
 #
 
-include_recipe 'hadoop_mapr::default'
+# Ensure conf directory exists
+package 'mapr-hbase'
 
-pkg = 'mapr-resourcemanager'
-
-package pkg do
-  action :install
+template "#{hbase_conf_dir}/hbase-site.xml" do
+  source 'generic-site.xml.erb'
+  mode '0644'
+  owner 'root'
+  group 'root'
+  action :create
+  variables { options: node['hbase']['hbase_site'] }
+  only_if { node['hbase'].key?('hbase_site') && !node['hbase']['hbase_site'].empty? }
 end

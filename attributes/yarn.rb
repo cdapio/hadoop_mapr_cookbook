@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: hadoop_mapr
-# Recipe:: hbase_master
+# Attribute:: yarn
 #
 # Copyright © 2013-2015 Cask Data, Inc.
 #
@@ -17,13 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe 'hadoop_mapr::default'
-
-# configures hbase-site.xml
-include_recipe 'hadoop_mapr::hbase'
-
-pkg = 'mapr-hbase-master'
-
-package pkg do
-  action :install
-end
+###
+# yarn-site.xml settings - these are the MapR defaults
+###
+default['hadoop']['yarn_site']['yarn.resourcemanager.hostname'] = node['fqdn']

@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: hadoop_mapr
-# Recipe:: nodemanager
+# Recipe:: hadoop_yarn
 #
 # Copyright © 2013-2015 Cask Data, Inc.
 #
@@ -17,10 +17,18 @@
 # limitations under the License.
 #
 
-include_recipe 'hadoop_mapr::default'
+# Ensure conf directory exists
+package 'mapr-hadoop-core'
 
-pkg = 'mapr-nodemanager'
-
-package pkg do
-  action :install
+# yarn-site.xml, mapred-site.xml
+%w(mapred_site yarn_site).each do |sitefile|
+  template "#{hadoop_conf_dir}/#{sitefile.gsub('_', '-')}.xml" do
+    source 'generic-site.xml.erb'
+    mode '0644'
+    owner 'root'
+    group 'root'
+    action :create
+    variables options: node['hadoop'][sitefile]
+    only_if { node['hadoop'].key?(sitefile) && !node['hadoop'][sitefile].empty? }
+  end
 end
