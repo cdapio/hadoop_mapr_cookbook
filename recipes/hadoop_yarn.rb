@@ -22,7 +22,8 @@ package 'mapr-hadoop-core'
 
 # yarn-site.xml, mapred-site.xml
 %w(mapred_site yarn_site).each do |sitefile|
-  template "#{hadoop_conf_dir}/#{sitefile.gsub('_', '-')}.xml" do
+  template "#{sitefile.gsub('_', '-')}.xml" do
+    path lazy { "#{hadoop_conf_dir}/#{sitefile.gsub('_', '-')}.xml" }
     source 'generic-site.xml.erb'
     mode '0644'
     owner 'root'

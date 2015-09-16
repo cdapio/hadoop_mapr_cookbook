@@ -25,12 +25,13 @@ package pkg do
   action :install
 end
 
-template "#{hive_conf_dir}/hive-site.xml" do
+template "hive-site.xml" do
+  path lazy { "#{hive_conf_dir}/hive-site.xml" }
   source 'generic-site.xml.erb'
   mode '0644'
   owner 'root'
   group 'root'
   action :create
-  variables { options: node['hive']['hive_site'] }
+  variables options: node['hive']['hive_site']
   only_if { node['hive'].key?('hive_site') && !node['hive']['hive_site'].empty? }
 end
