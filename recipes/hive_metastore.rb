@@ -22,8 +22,8 @@ include_recipe 'hadoop_mapr::default'
 # configures hive-site.xml
 include_recipe 'hadoop_mapr::hive'
 
-pkg = 'mapr-hivemetastore'
-
-package pkg do
+package 'mapr-hivemetastore' do
   action :install
+  version node['hive']['version'] if node['hive'].key?('version') && !node['hive']['version'].empty?
 end
+

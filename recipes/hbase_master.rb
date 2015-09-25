@@ -22,8 +22,7 @@ include_recipe 'hadoop_mapr::default'
 # configures hbase-site.xml
 include_recipe 'hadoop_mapr::hbase'
 
-pkg = 'mapr-hbase-master'
-
-package pkg do
+package 'mapr-hbase-master' do
   action :install
+  version node['hbase']['version'] if node['hbase'].key?('version') && !node['hbase']['version'].empty?
 end

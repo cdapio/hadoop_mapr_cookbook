@@ -18,7 +18,11 @@
 #
 
 # Ensure conf directory exists
-package 'mapr-hbase'
+package 'mapr-hbase' do
+  action :install
+  version node['hbase']['version'] if node['hbase'].key?('version') && !node['hbase']['version'].empty?
+end
+
 
 template "hbase-site.xml" do
   path lazy { "#{hbase_conf_dir}/hbase-site.xml" }
