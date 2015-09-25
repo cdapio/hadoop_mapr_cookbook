@@ -23,6 +23,7 @@ pkg = 'mapr-hive'
 
 package pkg do
   action :install
+  version node['hive']['version'] if node['hive'].key?('version') && !node['hive']['version'].empty?
 end
 
 template "hive-site.xml" do
