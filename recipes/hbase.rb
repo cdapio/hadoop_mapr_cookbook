@@ -20,7 +20,7 @@
 # Ensure conf directory exists
 package 'mapr-hbase'
 
-template "hbase-site.xml" do
+template 'hbase-site.xml' do
   path lazy { "#{hbase_conf_dir}/hbase-site.xml" }
   source 'generic-site.xml.erb'
   mode '0644'

@@ -55,7 +55,7 @@ unless scratch_dir == '/tmp/hive-${user.name}'
     timeout 300
     user m_user
     group m_group
-    not_if "hadoop fs -test -d #{scratch_dir}", :user => m_user
+    not_if "hadoop fs -test -d #{scratch_dir}", user: m_user
     action :nothing
   end
 end
@@ -65,6 +65,6 @@ execute 'hive-mfs-warehousedir' do
   timeout 300
   user m_user
   group m_group
-  not_if "hadoop fs -test -d #{warehouse_dir}", :user => m_user
+  not_if "hadoop fs -test -d #{warehouse_dir}", user: m_user
   action :nothing
 end
