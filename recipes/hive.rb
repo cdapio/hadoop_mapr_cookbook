@@ -24,7 +24,7 @@ package 'mapr-hive' do
   version node['hive']['version'] if node['hive'].key?('version') && !node['hive']['version'].empty?
 end
 
-template "hive-site.xml" do
+template 'hive-site.xml' do
   path lazy { "#{hive_conf_dir}/hive-site.xml" }
   source 'generic-site.xml.erb'
   mode '0644'
