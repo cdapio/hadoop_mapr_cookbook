@@ -26,4 +26,3 @@ package 'mapr-hive-server2' do
   action :install
   version node['hive']['version'] if node['hive'].key?('version') && !node['hive']['version'].empty?
 end
-

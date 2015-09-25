@@ -23,7 +23,6 @@ package 'mapr-hbase' do
   version node['hbase']['version'] if node['hbase'].key?('version') && !node['hbase']['version'].empty?
 end
 
-
 template 'hbase-site.xml' do
   path lazy { "#{hbase_conf_dir}/hbase-site.xml" }
   source 'generic-site.xml.erb'
