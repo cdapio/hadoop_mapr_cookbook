@@ -54,9 +54,11 @@ module HadoopMapr
     def hive_conf_dir
       result = nil
       # There is no hiveversion file, we can only guess and check
-      %w(/opt/mapr/hive/hive-1.0/conf /opt/mapr/hive/hive-0.13/conf).each do |candidate|
-        if ::File.exist?("#{candidate}/hive-site.xml")
-          result = candidate
+      Dir.foreach('/opt/mapr/hive') do |candidate|
+        next if candidate == '.' || candidate == '..'
+        next unless File.directory?(File.join('/opt/mapr/hive', candidate))
+        if ::File.exist?(File.join('/opt/mapr/hive', candidate, 'conf', 'hive-site.xml'))
+          result = File.join('/opt/mapr/hive', candidate, 'conf')
           break
         end
       end
