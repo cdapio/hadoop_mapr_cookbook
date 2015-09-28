@@ -19,10 +19,9 @@
 
 include_recipe 'hadoop_mapr::default'
 
-pkg = 'mapr-hive'
-
-package pkg do
+package 'mapr-hive' do
   action :install
+  version node['hive']['version'] if node['hive'].key?('version') && !node['hive']['version'].empty?
 end
 
 template 'hive-site.xml' do
