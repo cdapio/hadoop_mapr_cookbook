@@ -21,3 +21,6 @@
 # yarn-site.xml settings - these are the MapR defaults
 ###
 default['hadoop']['yarn_site']['yarn.resourcemanager.hostname'] = node['fqdn']
+
+# yarn.application.classpath - append /opt/mapr/lib/*
+default['hadoop']['yarn_site']['yarn.application.classpath'] = '$HADOOP_CONF_DIR, $HADOOP_COMMON_HOME/share/hadoop/common/*, $HADOOP_COMMON_HOME/share/hadoop/common/lib/*, $HADOOP_HDFS_HOME/share/hadoop/hdfs/*, $HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*, $HADOOP_YARN_HOME/share/hadoop/yarn/*, $HADOOP_YARN_HOME/share/hadoop/yarn/lib/*, $HADOOP_COMMON_HOME/share/hadoop/mapreduce/*, $HADOOP_COMMON_HOME/share/hadoop/mapreduce/lib/*, /opt/mapr/lib/*'
