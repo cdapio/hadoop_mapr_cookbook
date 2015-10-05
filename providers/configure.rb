@@ -59,6 +59,9 @@ action :run do
   # client_only_mode
   args += ['-c'] if new_resource.client_only_mode == true
 
+  # no-autostart
+  args += ['-no-autostart'] if new_resource.no_autostart == true
+
   # additional args
   additional_args = new_resource.args || []
   # Flatten any hashes or multi-level arrays within additional_args to arrays

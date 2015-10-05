@@ -35,6 +35,8 @@ attribute :cluster_name,          kind_of: String,                    default: n
 attribute :refresh_roles,         kind_of: [TrueClass, FalseClass],   default: false
 # -c
 attribute :client_only_mode,      kind_of: [TrueClass, FalseClass],   default: false
+# -no-autostart
+attribute :no_autostart,          kind_of: [TrueClass, FalseClass],   default: false
 
 # Additional args will simply be flattened and passed through as args to configure.sh
 #   example input: [ '--isvm', { '-HS': 'hostA' } ]
