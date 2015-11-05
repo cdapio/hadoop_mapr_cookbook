@@ -30,7 +30,7 @@ attribute :cldb_mh_list,          kind_of: [Array, String],           default: n
 # -Z
 attribute :zookeeper_list,        kind_of: [Array, String],           default: nil
 # -D
-attribute :cluster_name,          kind_of: String,                    default: nil, name_attribute: true
+attribute :cluster_name,          kind_of: String,                    name_attribute: true
 # -v
 attribute :refresh_roles,         kind_of: [TrueClass, FalseClass],   default: false
 # -c
