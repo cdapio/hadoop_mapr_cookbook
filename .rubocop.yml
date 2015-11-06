@@ -1,5 +1,5 @@
 LineLength:
-  Max: 200
+  Max: 500
 AsciiComments:
   Enabled: false
 SingleSpaceBeforeFirstArg:

@@ -41,4 +41,4 @@ attribute :no_autostart,          kind_of: [TrueClass, FalseClass],   default: f
 # Additional args will simply be flattened and passed through as args to configure.sh
 #   example input: [ '--isvm', { '-HS': 'hostA' } ]
 #   results in: --isvm -HS hostA
-attribute :args,       kind_of: [String, Array],           default: nil
+attribute :args, kind_of: [String, Array], default: nil
