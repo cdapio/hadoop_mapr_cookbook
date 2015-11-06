@@ -24,11 +24,11 @@ actions :run
 default_action :run
 
 # -C
-attribute :cldb_list,             kind_of: [Array, String],           default: nil
+attribute :cldb_list,             kind_of: [Array, String, nil],           default: nil
 # -M
-attribute :cldb_mh_list,          kind_of: [Array, String],           default: nil
+attribute :cldb_mh_list,          kind_of: [Array, String, nil],           default: nil
 # -Z
-attribute :zookeeper_list,        kind_of: [Array, String],           default: nil
+attribute :zookeeper_list,        kind_of: [Array, String, nil],           default: nil
 # -D
 attribute :cluster_name,          kind_of: String,                    name_attribute: true
 # -v
@@ -41,4 +41,4 @@ attribute :no_autostart,          kind_of: [TrueClass, FalseClass],   default: f
 # Additional args will simply be flattened and passed through as args to configure.sh
 #   example input: [ '--isvm', { '-HS': 'hostA' } ]
 #   results in: --isvm -HS hostA
-attribute :args, kind_of: [String, Array], default: nil
+attribute :args, kind_of: [String, Array, nil], default: nil
