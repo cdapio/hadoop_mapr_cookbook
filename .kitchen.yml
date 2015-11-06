@@ -11,7 +11,6 @@ provisioner:
 
 platforms:
   - name: centos-6.6
-  - name: debian-6.0.10
     run_list:
     - apt::default
   - name: ubuntu-12.04
@@ -31,9 +30,15 @@ suites:
       - recipe[hadoop_mapr::zookeeper]
       - recipe[hadoop_mapr::nfs]
       - recipe[hadoop_mapr::gateway]
-      - recipe[hadoop_mapr::resourcemanager]
-      - recipe[hadoop_mapr::nodemanager]
+      - recipe[hadoop_mapr::hadoop_yarn_resourcemanager]
+      - recipe[hadoop_mapr::hadoop_yarn_nodemanager]
       - recipe[hadoop_mapr::historyserver]
+      - recipe[hadoop_mapr::hbase_master]
+      - recipe[hadoop_mapr::hbase_regionserver]
+      - recipe[hadoop_mapr::hive_metastore]
+      - recipe[hadoop_mapr::hive_server2]
+      - recipe[hadoop_mapr::warden]
+      - recipe[hadoop_mapr::webserver]
     attributes:
       java:
         install_flavor: 'oracle'
@@ -42,3 +47,29 @@ suites:
           accept_oracle_download_terms: true
       hadoop_mapr:
         distribution_version: '4.1.0'
+  - name: mapr500
+    run_list:
+      - recipe[java::default]
+      - recipe[hadoop_mapr::default]
+      - recipe[hadoop_mapr::fileserver]
+      - recipe[hadoop_mapr::cldb]
+      - recipe[hadoop_mapr::zookeeper]
+      - recipe[hadoop_mapr::nfs]
+      - recipe[hadoop_mapr::gateway]
+      - recipe[hadoop_mapr::hadoop_yarn_resourcemanager]
+      - recipe[hadoop_mapr::hadoop_yarn_nodemanager]
+      - recipe[hadoop_mapr::historyserver]
+      - recipe[hadoop_mapr::hbase_master]
+      - recipe[hadoop_mapr::hbase_regionserver]
+      - recipe[hadoop_mapr::hive_metastore]
+      - recipe[hadoop_mapr::hive_server2]
+      - recipe[hadoop_mapr::warden]
+      - recipe[hadoop_mapr::webserver]
+    attributes:
+      java:
+        install_flavor: 'oracle'
+        jdk_version: 7
+        oracle:
+          accept_oracle_download_terms: true
+      hadoop_mapr:
+        distribution_version: '5.0.0'

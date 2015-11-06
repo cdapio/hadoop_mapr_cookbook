@@ -22,7 +22,7 @@ include_recipe 'hadoop_mapr::default'
 # configures hive-site.xml
 include_recipe 'hadoop_mapr::hive'
 
-package 'mapr-hive-server2' do
+package 'mapr-hiveserver2' do
   action :install
   version node['hive']['version'] if node['hive'].key?('version') && !node['hive']['version'].empty?
 end
