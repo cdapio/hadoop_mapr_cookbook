@@ -21,7 +21,7 @@
 package 'mapr-hadoop-core'
 
 # yarn-site.xml, mapred-site.xml
-%w(mapred_site yarn_site).each do |sitefile|
+%w(core_site mapred_site yarn_site).each do |sitefile|
   template "#{sitefile.tr('_', '-')}.xml" do
     path lazy { "#{hadoop_conf_dir}/#{sitefile.tr('_', '-')}.xml" }
     source 'generic-site.xml.erb'
