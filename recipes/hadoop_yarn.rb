@@ -20,7 +20,7 @@
 # Ensure conf directory exists
 package 'mapr-hadoop-core'
 
-# core_site yarn-site.xml, mapred-site.xml
+# core_site.xml yarn-site.xml, mapred-site.xml
 %w(core_site mapred_site yarn_site).each do |sitefile|
   template "#{sitefile.tr('_', '-')}.xml" do
     path lazy { "#{hadoop_conf_dir}/#{sitefile.tr('_', '-')}.xml" }
