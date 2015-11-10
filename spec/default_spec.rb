@@ -24,6 +24,14 @@ describe 'hadoop_mapr::default' do
       link = chef_run.link('/opt/mapr')
       expect(link).to link_to('/some/data/disk')
     end
+
+    %w(hadoop-mapr hadoop-mapreduce hadoop-yarn).each do |dir|
+      it "creates /tmp/#{dir} directory" do
+        expect(chef_run).to create_directory("/tmp/#{dir}").with(
+          mode: '1777'
+        )
+      end
+    end
   end
 
   context 'on Ubuntu 12.04' do
