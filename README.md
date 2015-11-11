@@ -42,13 +42,13 @@ This cookbook generates the XML configuration files for Hadoop, overriding the M
 
 Attribute trees are used to define each Hadoop configuration file.  The attribute name determines in which file the property is placed and the property name. The attribute value is the property value. For example: the attribute `hadoop_mapr['core_site']['hadoop.tmp.dir']` will configure a property named `hadoop.tmp.dir` in `core-site.xml`, located in the MapR install directory, such as `/opt/mapr/hadoop/hadoop-[version]/etc/hadoop`. All attribute values are taken as-is and only minimal configuration checking is performed on values. It is up to the user to provide a valid configuration for your cluster.
 
-Attribute Tree | File | Location
--------------- | ---- | --------
-hadoop_mapr['core_site'] | core-site.xml | `hadoop_conf_dir()`
-hadoop_mapr['hbase_site'] | hbase-site.xml | `hbase_conf_dir()`
-hadoop_mapr['hive_site'] | hive-site.xml | `hive_conf_dir()`
+Attribute Tree             | File            | Location
+-------------------------- | --------------- | --------
+hadoop_mapr['core_site']   | core-site.xml   | `hadoop_conf_dir()`
+hadoop_mapr['hbase_site']  | hbase-site.xml  | `hbase_conf_dir()`
+hadoop_mapr['hive_site']   | hive-site.xml   | `hive_conf_dir()`
 hadoop_mapr['mapred_site'] | mapred-site.xml | `hadoop_conf_dir()`
-hadoop_mapr['yarn_site'] | yarn-site.xml | `hadoop_conf_dir()`
+hadoop_mapr['yarn_site']   | yarn-site.xml   | `hadoop_conf_dir()`
 
 Please see the `hbase`, `hive`, and `yarn` attributes files. They contain default values which generally match the MapR-generated defaults, except where noted.
 
