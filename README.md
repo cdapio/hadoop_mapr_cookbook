@@ -93,13 +93,13 @@ Action | Description
 ### Attributes
 Attribute | Type | Default Value | Description
 --------- | ---- | ------------- | -----------
-`:cldb_list` | Array | | The list of CLDB nodes of the cluster (`hostname[:port][,hostname[:port]...]`)
-`:cldb_mh_list` | Array | | The list of multi-homed CLDB nodes of the cluster (`hostname[:port][,hostname[:port] [hostname[:port],hostname[:port] ...]`)
-`:zookeeper_list` | Array | | The list of ZooKeeper nodes of the cluster (`hostname[:port][,hostname[:port]...]`)
-`:cluster_name` | String | | The name of the cluster
-`:refresh_roles` | Boolean | false | Refresh roles, passes the -R flag. It is incompatable with many other options
-`:client_only_mode` | Boolean | false | Client-only mode, passes the -c flag
-`:args` | Array | | Any other options from http://doc.mapr.com/display/MapR/configure.sh. Use a key-value hash element for parameters with values
+`:cldb_list` | Array | | The list of CLDB nodes of the cluster (`hostname[:port][,hostname[:port]...]`).
+`:cldb_mh_list` | Array | | The list of multi-homed CLDB nodes of the cluster (`hostname[:port][,hostname[:port] [hostname[:port],hostname[:port] ...]`).
+`:zookeeper_list` | Array | | The list of ZooKeeper nodes of the cluster (`hostname[:port][,hostname[:port]...]`).
+`:cluster_name` | String | | The name of the cluster.
+`:refresh_roles` | Boolean | false | Refresh roles, passes the -R flag. It is incompatable with many other options.
+`:client_only_mode` | Boolean | false | Client-only mode, passes the -c flag.
+`:args` | Array | | Any other options from http://doc.mapr.com/display/MapR/configure.sh. Use a key-value hash element for parameters with values.
 
 ### Examples
 Example usage of an initial run of `configure.sh`, including disk setup:
