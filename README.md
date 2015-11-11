@@ -44,11 +44,11 @@ Attribute trees are used to define each Hadoop configuration file.  The attribut
 
 Attribute Tree             | File            | Location
 -------------------------- | --------------- | --------
-hadoop_mapr['core_site']   | core-site.xml   | `hadoop_conf_dir()`
-hadoop_mapr['hbase_site']  | hbase-site.xml  | `hbase_conf_dir()`
-hadoop_mapr['hive_site']   | hive-site.xml   | `hive_conf_dir()`
-hadoop_mapr['mapred_site'] | mapred-site.xml | `hadoop_conf_dir()`
-hadoop_mapr['yarn_site']   | yarn-site.xml   | `hadoop_conf_dir()`
+hadoop_mapr['core_site']   | core-site.xml   | `hadoop_mapr['install_dir']/hadoop/hadoop-[version]/etc/hadoop`
+hadoop_mapr['hbase_site']  | hbase-site.xml  | `hadoop_mapr['install_dir']/hbase/hbase-[version]/conf`
+hadoop_mapr['hive_site']   | hive-site.xml   | `hadoop_mapr['install_dir']/hive/hive-[version]/conf`
+hadoop_mapr['mapred_site'] | mapred-site.xml | `hadoop_mapr['install_dir']/hadoop/hadoop-[version]/etc/hadoop`
+hadoop_mapr['yarn_site']   | yarn-site.xml   | `hadoop_mapr['install_dir']/hadoop/hadoop-[version]/etc/hadoop`
 
 Please see the `hbase`, `hive`, and `yarn` attributes files. They contain default values which generally match the MapR-generated defaults, except where noted.
 
