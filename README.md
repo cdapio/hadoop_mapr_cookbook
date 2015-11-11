@@ -9,7 +9,7 @@ This cookbook may work on earlier versions, but these are the minimal tested ver
 * CentOS 6.6+
 * Ubuntu 12.04+
 
-If you plan on using Hive with a database other than the embedded Derby, you will need to provide and set it up prior to starting the Hive Metastore service. Similarly, if you plan on installing `mapr-metrics`, you will need to setup MySQL prior to configuring the `mapr-metrics` service.
+If you plan on using Hive with a database other than the embedded Derby, you will need to provide and set it up prior to starting the Hive MetaStore service. Similarly, if you plan on installing `mapr-metrics`, you will need to setup MySQL prior to configuring the `mapr-metrics` service.
 
 
 # Usage
@@ -40,7 +40,7 @@ This cookbook has been tested with MapR 4.1.0 and 5.0.0.
 
 This cookbook generates the XML configuration files for Hadoop, overriding the MapR-provided defaults. This allows advanced configurations that would otherwise require hand-editing outside of the MapR utilities. A helper library is used to determine the install location of these configuration files.
 
-Attribute trees are used to define each Hadoop configuration file.  The attribute name determines which file the property is place and the property name. The attribute value is the property value. For example: the attribute `hadoop_mapr['core_site']['hadoop.tmp.dir']` will configure a property named `hadoop.tmp.dir` in `core-site.xml`, located in the MapR install directory, such as `/opt/mapr/hadoop/hadoop-[version]/etc/hadoop`. All attribute values are taken as-is and only minimal configuration checking is performed on values. It is up to the user to provide a valid configuration for your cluster.
+Attribute trees are used to define each Hadoop configuration file.  The attribute name determines in which file the property is placed and the property name. The attribute value is the property value. For example: the attribute `hadoop_mapr['core_site']['hadoop.tmp.dir']` will configure a property named `hadoop.tmp.dir` in `core-site.xml`, located in the MapR install directory, such as `/opt/mapr/hadoop/hadoop-[version]/etc/hadoop`. All attribute values are taken as-is and only minimal configuration checking is performed on values. It is up to the user to provide a valid configuration for your cluster.
 
 Attribute Tree | File | Location
 -------------- | ---- | --------
@@ -67,7 +67,7 @@ Please see the `hbase`, `hive`, and `yarn` attributes files. They contain defaul
 * `hbase_regionserver.rb` - Sets up an HBase RegionServer
 * `historyserver.rb` - Sets up a HistoryServer
 * `hive.rb` - Sets up the Hive configuration
-* `hive_metastore.rb` - Sets up a Hive Metastore
+* `hive_metastore.rb` - Sets up a Hive MetaStore
 * `hive_server2.rb` - Sets up a Hive Server2
 * `metrics.rb` - Installs the Metrics package
 * `nfs.rb` - Installs the NFS package
