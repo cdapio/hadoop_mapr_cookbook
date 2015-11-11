@@ -11,4 +11,3 @@ describe 'hadoop_mapr::cldb' do
     end
   end
 end
-

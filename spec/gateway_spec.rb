@@ -14,4 +14,3 @@ describe 'hadoop_mapr::gateway' do
     end
   end
 end
-

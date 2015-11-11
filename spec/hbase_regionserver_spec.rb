@@ -11,4 +11,3 @@ describe 'hadoop_mapr::hbase_regionserver' do
     end
   end
 end
-

@@ -11,4 +11,3 @@ describe 'hadoop_mapr::fileserver' do
     end
   end
 end
-

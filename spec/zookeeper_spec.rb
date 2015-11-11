@@ -10,7 +10,7 @@ describe 'hadoop_mapr::zookeeper' do
       expect(chef_run).to install_package('mapr-zookeeper')
     end
 
-    it "creates mapr-zookeeper service resource, but does not run it" do
+    it 'creates mapr-zookeeper service resource, but does not run it' do
       expect(chef_run).to_not disable_service('mapr-zookeeper')
       expect(chef_run).to_not enable_service('mapr-zookeeper')
       expect(chef_run).to_not reload_service('mapr-zookeeper')
@@ -20,4 +20,3 @@ describe 'hadoop_mapr::zookeeper' do
     end
   end
 end
-

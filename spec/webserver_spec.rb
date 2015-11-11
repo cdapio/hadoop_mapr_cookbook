@@ -11,4 +11,3 @@ describe 'hadoop_mapr::webserver' do
     end
   end
 end
-

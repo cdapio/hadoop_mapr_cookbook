@@ -10,7 +10,7 @@ describe 'hadoop_mapr::warden' do
       expect(chef_run).to install_package('mapr-core-internal')
     end
 
-    it "creates mapr-warden service resource, but does not run it" do
+    it 'creates mapr-warden service resource, but does not run it' do
       expect(chef_run).to_not disable_service('mapr-warden')
       expect(chef_run).to_not enable_service('mapr-warden')
       expect(chef_run).to_not reload_service('mapr-warden')
@@ -20,4 +20,3 @@ describe 'hadoop_mapr::warden' do
     end
   end
 end
-

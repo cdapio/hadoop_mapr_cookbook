@@ -12,7 +12,7 @@ describe 'hadoop_mapr::hive' do
       expect(chef_run).to install_package('mapr-hive')
     end
 
-    it "creates hive-site.xml from template" do
+    it 'creates hive-site.xml from template' do
       expect(chef_run).to create_template('hive-site.xml')
     end
   end

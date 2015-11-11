@@ -11,4 +11,3 @@ describe 'hadoop_mapr::hbase_master' do
     end
   end
 end
-

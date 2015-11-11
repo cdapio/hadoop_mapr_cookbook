@@ -11,4 +11,3 @@ describe 'hadoop_mapr::hive_server2' do
     end
   end
 end
-

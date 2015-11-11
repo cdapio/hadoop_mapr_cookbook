@@ -11,4 +11,3 @@ describe 'hadoop_mapr::hadoop_yarn_nodemanager' do
     end
   end
 end
-

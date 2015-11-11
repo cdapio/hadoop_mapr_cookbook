@@ -11,4 +11,3 @@ describe 'hadoop_mapr::metrics' do
     end
   end
 end
-

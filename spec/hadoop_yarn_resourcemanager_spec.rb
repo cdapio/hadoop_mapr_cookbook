@@ -11,4 +11,3 @@ describe 'hadoop_mapr::hadoop_yarn_resourcemanager' do
     end
   end
 end
-

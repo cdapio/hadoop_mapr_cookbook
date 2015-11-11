@@ -11,4 +11,3 @@ describe 'hadoop_mapr::historyserver' do
     end
   end
 end
-

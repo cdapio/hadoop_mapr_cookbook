@@ -11,4 +11,3 @@ describe 'hadoop_mapr::nfs' do
     end
   end
 end
-

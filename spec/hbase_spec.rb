@@ -12,7 +12,7 @@ describe 'hadoop_mapr::hbase' do
       expect(chef_run).to install_package('mapr-hbase')
     end
 
-    it "creates hbase-site.xml from template" do
+    it 'creates hbase-site.xml from template' do
       expect(chef_run).to create_template('hbase-site.xml')
     end
   end
