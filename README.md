@@ -94,7 +94,7 @@ Action | Description
 Attribute | Type | Default Value | Description
 --------- | ---- | ------------- | -----------
 `:cldb_list` | Array | | The list of CLDB nodes of the cluster (`hostname[:port][,hostname[:port]...]`).
-`:cldb_mh_list` | Array | | The list of multi-homed CLDB nodes of the cluster (`hostname[:port][,hostname[:port] [hostname[:port],hostname[:port] ...]`).
+`:cldb_mh_list` | Array | | The list of multi-homed CLDB nodes of the cluster (`hostname[:port][,hostname[:port]...] hostname[:port][,hostname[:port]...] ...`).
 `:zookeeper_list` | Array | | The list of ZooKeeper nodes of the cluster (`hostname[:port][,hostname[:port]...]`).
 `:cluster_name` | String | | The name of the cluster.
 `:refresh_roles` | Boolean | false | Refresh roles, passes the -R flag. It is incompatable with many other options.
