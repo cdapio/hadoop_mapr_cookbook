@@ -16,7 +16,7 @@ If you plan on using Hive with a database other than the embedded Derby, you wil
 
 This cookbook is an adaptation of the [Hadoop cookbook](https://github.com/caskdata/hadoop_cookbook) for the MapR distribution of Hadoop. It is designed to be used with a wrapper cookbook or a role with settings for configuring MapR. The services should work out of the box on a single host, but little validation is performed that you have created a working MapR installation.
 
-This cookbook provides an [LWRP](#Resources) for running the MapR [configure.sh utility](http://doc.mapr.com/display/MapR/configure.sh). Additionally, the Hadoop configuration is attribute-driven, with default attributes in place to match the [configure.sh](http://doc.mapr.com/display/MapR/configure.sh) output. The goal is to wrap and supplement the installation utilities already provided by MapR.
+This cookbook provides an [LWRP](#resources) for running the MapR [configure.sh utility](http://doc.mapr.com/display/MapR/configure.sh). Additionally, the Hadoop configuration is attribute-driven, with default attributes in place to match the [configure.sh](http://doc.mapr.com/display/MapR/configure.sh) output. The goal is to wrap and supplement the installation utilities already provided by MapR.
 
 This cookbook is suitable for use via either `chef-client` or `chef-solo` since it does not use any `chef-server` related functionality. The cookbook defines service definitions for ZooKeeper and Warden, but it does not enable or start them by default.
 
