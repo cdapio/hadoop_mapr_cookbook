@@ -123,6 +123,15 @@ Author: Cask Data, Inc. (<ops@cask.co>)
 
 # Testing
 
+This cookbook contains the `foodcritic`, `rubocop`, and `chefspec` code tests.  It also includes functionality testing provided by `kitchen`.
+
+```text
+rake chefspec     # Run RSpec code examples
+rake foodcritic   # Foodcritic linter
+rake integration  # Run Test Kitchen integration tests
+rake metadata     # Create metadata.json from metadata.rb
+rake rubocop      # Ruby style guide linter
+```
 
 # License
 
