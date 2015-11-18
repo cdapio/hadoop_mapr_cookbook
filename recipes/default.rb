@@ -69,20 +69,12 @@ hadoop_tmp_dir =
 node.default['hadoop']['core_site']['hadoop.tmp.dir'] = hadoop_tmp_dir
 
 if node['hadoop']['core_site']['hadoop.tmp.dir'] == 'file:///tmp/hadoop-${user}'
-  %w(mapr mapreduce yarn).each do |dir|
-    directory "/tmp/hadoop-#{dir}" do
-      mode '1777'
-      my_user =
-        if dir == 'mapreduce'
-          'mapred'
-        else
-          dir
-        end
-      owner my_user
-      group my_user
-      action :create
-      recursive true
-    end
+  directory "/tmp/hadoop-#{node['hadoop_mapr']['mapr_user']['username']}" do
+    mode '1777'
+    owner node['hadoop_mapr']['mapr_user']['username']
+    group node['hadoop_mapr']['mapr_user']['group']
+    action :create
+    recursive true
   end
 elsif node['hadoop']['core_site']['hadoop.tmp.dir'] =~ /${user}/
   # Since we're creating a 1777 directory, Hadoop can create the user-specific subdirectories, itself
