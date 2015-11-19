@@ -5,6 +5,7 @@ describe 'hadoop_mapr::default' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(platform: 'centos', version: 6.6) do |node|
         node.override['hadoop_mapr']['install_dir'] = '/some/data/disk'
+        stub_command(%r{/sys/kernel/mm/(.*)transparent_hugepage/defrag}).and_return(false)
       end.converge(described_recipe)
     end
 
@@ -36,7 +37,9 @@ describe 'hadoop_mapr::default' do
 
   context 'on Ubuntu 12.04' do
     let(:chef_run) do
-      ChefSpec::SoloRunner.new(platform: 'ubuntu', version: 12.04).converge(described_recipe)
+      ChefSpec::SoloRunner.new(platform: 'ubuntu', version: 12.04) do |_node|
+        stub_command(%r{/sys/kernel/mm/(.*)transparent_hugepage/defrag}).and_return(false)
+      end.converge(described_recipe)
     end
 
     it 'creates install dir' do
