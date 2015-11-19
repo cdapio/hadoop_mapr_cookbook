@@ -25,12 +25,10 @@ describe 'hadoop_mapr::default' do
       expect(link).to link_to('/some/data/disk')
     end
 
-    %w(hadoop-mapr hadoop-mapreduce hadoop-yarn).each do |dir|
-      it "creates /tmp/#{dir} directory" do
-        expect(chef_run).to create_directory("/tmp/#{dir}").with(
-          mode: '1777'
-        )
-      end
+    it 'creates /tmp/hadoop-mapr directory' do
+      expect(chef_run).to create_directory('/tmp/hadoop-mapr').with(
+        mode: '1777'
+      )
     end
   end
 
