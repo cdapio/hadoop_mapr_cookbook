@@ -5,6 +5,7 @@ describe 'hadoop_mapr::hive' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(platform: 'centos', version: 6.6) do |node|
         node.default['hive']['hive_site']['hive.exec.local.scratchdir'] = '/tmp/hive/scratch'
+        stub_command(%r{/sys/kernel/mm/(.*)transparent_hugepage/defrag}).and_return(false)
       end.converge(described_recipe)
     end
 
