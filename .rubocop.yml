@@ -4,3 +4,5 @@ AsciiComments:
   Enabled: false
 Style/SpaceBeforeFirstArg:
   Enabled: false
+Metrics/BlockLength:
+  Enabled: false
