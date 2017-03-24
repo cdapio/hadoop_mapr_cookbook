@@ -18,7 +18,7 @@
 #
 
 mapr_release = node['hadoop_mapr']['distribution_version'].gsub(/^v/, '')
-mep_release = node['hadoop_mapr']['mep_version']
+mep_release = node['hadoop_mapr']['mep_version'].to_f
 
 # Per http://doc.mapr.com/display/MapR/JDK+Support+Matrix
 if mapr_release.to_i >= 4 && node.key?('java') && node['java'].key?('jdk_version') && node['java']['jdk_version'].to_i < 7
@@ -33,7 +33,7 @@ when 'rhel'
   yum_repo_url = "http://package.mapr.com/releases/v#{mapr_release}/redhat"
   yum_repo_key_url = 'http://package.mapr.com/releases/pub/maprgpg.key'
 
-  yum_ecosystem_repo_url = if node['hadoop_mapr']['distribution_version'] >= '5.2'
+  yum_ecosystem_repo_url = if node['hadoop_mapr']['distribution_version'].to_f >= 5.2
                              "http://package.mapr.com/releases/MEP/MEP-#{mep_release}/redhat"
                            else
                              "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/redhat"
