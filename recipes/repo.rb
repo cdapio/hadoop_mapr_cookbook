@@ -33,11 +33,11 @@ when 'rhel'
   yum_repo_url = "http://package.mapr.com/releases/v#{mapr_release}/redhat"
   yum_repo_key_url = 'http://package.mapr.com/releases/pub/maprgpg.key'
 
-  if node['hadoop_mapr']['distribution_version'] >= '5.2'
-    yum_ecosystem_repo_url = "http://package.mapr.com/releases/MEP/MEP-#{mep_release}/redhat"
-  else
-    yum_ecosystem_repo_url = "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/redhat"
-  end
+  yum_ecosystem_repo_url = if node['hadoop_mapr']['distribution_version'] >= '5.2'
+                             "http://package.mapr.com/releases/MEP/MEP-#{mep_release}/redhat"
+                           else
+                             "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/redhat"
+                           end
 
   yum_repository 'maprtech' do
     name 'maprtech'
@@ -67,7 +67,6 @@ when 'rhel'
     only_if { node['hadoop_mapr']['distribution_version'] >= '5.2' }
   end
 
-
   # TODO: include epel if mapr-metrics is enabled
 
 when 'debian'
@@ -77,11 +76,11 @@ when 'debian'
   apt_repo_url = "http://package.mapr.com/releases/v#{mapr_release}/ubuntu"
   apt_repo_key_url = 'http://package.mapr.com/releases/pub/maprgpg.key'
 
-  if node['hadoop_mapr']['distribution_version'] >= '5.2'
-    apt_ecosystem_repo_url = "http://package.mapr.com/releases/MEP/MEP-#{mep_release}/ubuntu"
-  else
-    apt_ecosystem_repo_url = "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/ubuntu"
-  end
+  apt_ecosystem_repo_url = if node['hadoop_mapr']['distribution_version'] >= '5.2'
+                             "http://package.mapr.com/releases/MEP/MEP-#{mep_release}/ubuntu"
+                           else
+                             "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/ubuntu"
+                           end
 
   apt_repository 'maprtech' do
     uri apt_repo_url
