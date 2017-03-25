@@ -33,7 +33,7 @@ when 'rhel'
   yum_repo_url = "http://package.mapr.com/releases/v#{mapr_release}/redhat"
   yum_repo_key_url = 'http://package.mapr.com/releases/pub/maprgpg.key'
 
-  yum_ecosystem_repo_url = if node['hadoop_mapr']['distribution_version'].to_f >= 5.2
+  yum_ecosystem_repo_url = if mapr_release.to_f >= 5.2
                              "http://package.mapr.com/releases/MEP/MEP-#{mep_release}/redhat"
                            else
                              "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/redhat"
@@ -54,7 +54,7 @@ when 'rhel'
     gpgkey yum_repo_key_url
     gpgcheck false
     action :add
-    only_if { node['hadoop_mapr']['distribution_version'] < '5.2' }
+    only_if { mapr_release.to_f < 5.2 }
   end
 
   yum_repository 'mep' do
@@ -64,7 +64,7 @@ when 'rhel'
     gpgkey yum_repo_key_url
     gpgcheck false
     action :add
-    only_if { node['hadoop_mapr']['distribution_version'] >= '5.2' }
+    only_if { mapr_release.to_f >= 5.2 }
   end
 
   # TODO: include epel if mapr-metrics is enabled
@@ -76,7 +76,7 @@ when 'debian'
   apt_repo_url = "http://package.mapr.com/releases/v#{mapr_release}/ubuntu"
   apt_repo_key_url = 'http://package.mapr.com/releases/pub/maprgpg.key'
 
-  apt_ecosystem_repo_url = if node['hadoop_mapr']['distribution_version'] >= '5.2'
+  apt_ecosystem_repo_url = if mapr_release.to_f >= 5.2
                              "http://package.mapr.com/releases/MEP/MEP-#{mep_release}/ubuntu"
                            else
                              "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/ubuntu"
@@ -96,7 +96,7 @@ when 'debian'
     trusted true
     distribution 'binary/'
     action :add
-    only_if { node['hadoop_mapr']['distribution_version'] < '5.2' }
+    only_if { mapr_release.to_f < 5.2 }
   end
 
   apt_repository 'maprmep' do
@@ -105,6 +105,6 @@ when 'debian'
     trusted true
     distribution 'binary/'
     action :add
-    only_if { node['hadoop_mapr']['distribution_version'] >= '5.2' }
+    only_if { mapr_release.to_f >= 5.2 }
   end
 end
