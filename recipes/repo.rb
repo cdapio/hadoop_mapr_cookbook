@@ -18,6 +18,7 @@
 #
 
 mapr_release = node['hadoop_mapr']['distribution_version'].gsub(/^v/, '')
+mep_release = node['hadoop_mapr']['mep_version'].to_f
 
 # Per http://doc.mapr.com/display/MapR/JDK+Support+Matrix
 if mapr_release.to_i >= 4 && node.key?('java') && node['java'].key?('jdk_version') && node['java']['jdk_version'].to_i < 7
@@ -30,8 +31,13 @@ when 'rhel'
   include_recipe 'yum'
 
   yum_repo_url = "http://package.mapr.com/releases/v#{mapr_release}/redhat"
-  yum_ecosystem_repo_url = "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/redhat"
   yum_repo_key_url = 'http://package.mapr.com/releases/pub/maprgpg.key'
+
+  yum_ecosystem_repo_url = if mapr_release.to_f >= 5.2
+                             "http://package.mapr.com/releases/MEP/MEP-#{mep_release}/redhat"
+                           else
+                             "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/redhat"
+                           end
 
   yum_repository 'maprtech' do
     name 'maprtech'
@@ -48,6 +54,17 @@ when 'rhel'
     gpgkey yum_repo_key_url
     gpgcheck false
     action :add
+    only_if { mapr_release.to_f < 5.2 }
+  end
+
+  yum_repository 'mep' do
+    name 'maprmep'
+    description 'MapR Technologies'
+    url yum_ecosystem_repo_url
+    gpgkey yum_repo_key_url
+    gpgcheck false
+    action :add
+    only_if { mapr_release.to_f >= 5.2 }
   end
 
   # TODO: include epel if mapr-metrics is enabled
@@ -57,8 +74,13 @@ when 'debian'
   include_recipe 'apt'
 
   apt_repo_url = "http://package.mapr.com/releases/v#{mapr_release}/ubuntu"
-  apt_ecosystem_repo_url = "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/ubuntu"
   apt_repo_key_url = 'http://package.mapr.com/releases/pub/maprgpg.key'
+
+  apt_ecosystem_repo_url = if mapr_release.to_f >= 5.2
+                             "http://package.mapr.com/releases/MEP/MEP-#{mep_release}/ubuntu"
+                           else
+                             "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/ubuntu"
+                           end
 
   apt_repository 'maprtech' do
     uri apt_repo_url
@@ -74,5 +96,15 @@ when 'debian'
     trusted true
     distribution 'binary/'
     action :add
+    only_if { mapr_release.to_f < 5.2 }
+  end
+
+  apt_repository 'maprmep' do
+    uri apt_ecosystem_repo_url
+    key apt_repo_key_url
+    trusted true
+    distribution 'binary/'
+    action :add
+    only_if { mapr_release.to_f >= 5.2 }
   end
 end

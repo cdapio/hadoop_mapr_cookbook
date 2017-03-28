@@ -24,6 +24,7 @@ default['java']['oracle']['accept_oracle_download_terms'] = true
 
 # MapR version to install
 default['hadoop_mapr']['distribution_version'] = '5.0.0'
+default['hadoop_mapr']['mep_version'] = '1.1'
 
 # MapR base install dir. Changing this results in a symlink from /opt/mapr to the new location
 default['hadoop_mapr']['install_dir'] = '/opt/mapr'
