@@ -2,7 +2,7 @@
 # Cookbook Name:: hadoop_mapr
 # Recipe:: repo
 #
-# Copyright © 2013-2015 Cask Data, Inc.
+# Copyright © 2013-2017 Cask Data, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ if mapr_release.to_i >= 4 && node.key?('java') && node['java'].key?('jdk_version
 end
 
 case node['platform_family']
-when 'rhel'
+when 'rhel', 'amazon' # ~FC024
   # Ensure that we have the proper LWRPs available
   include_recipe 'yum'
 
