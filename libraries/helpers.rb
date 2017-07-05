@@ -74,6 +74,33 @@ module HadoopMapr
   end
 end
 
+#
+# Return true if Kerberos is enabled
+#
+def hadoop_kerberos?
+  node['hadoop']['core_site'].key?('hadoop.security.authorization') &&
+    node['hadoop']['core_site'].key?('hadoop.security.authentication') &&
+    node['hadoop']['core_site']['hadoop.security.authorization'].to_s == 'true' &&
+    node['hadoop']['core_site']['hadoop.security.authentication'] == 'kerberos'
+end
+
+#
+# Return true if Mapr secure is enabled
+#
+def mapr_secure?
+  node['hadoop_mapr'].key?('gen_keys')
+=begin
+  node['hadoop']['core_site'].key?('hadoop.security.authorization') &&
+    node['hadoop']['core_site'].key?('hadoop.security.authentication') &&
+    node['hadoop']['core_site']['hadoop.security.authorization'].to_s == 'true' &&
+    node['hadoop']['core_site']['hadoop.security.authentication'] == 'kerberos'
+=end
+end
+
+def gen_keys?
+  node['hadoop_mapr'].key?('gen_keys')
+end
+
 # Load helpers
 Chef::Recipe.send(:include, ::HadoopMapr::Helpers)
 Chef::Resource.send(:include, ::HadoopMapr::Helpers)

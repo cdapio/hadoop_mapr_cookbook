@@ -17,3 +17,10 @@ depends 'java', '~> 1.21'
 %w(amazon centos debian redhat scientific ubuntu).each do |os|
   supports os
 end
+
+
+=begin
+%w(dpkg_autostart selinux sysctl ulimit).each do |cb|
+  depends cb
+end
+=end

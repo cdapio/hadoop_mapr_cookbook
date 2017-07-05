@@ -62,6 +62,11 @@ action :run do
   # no-autostart
   args += ['-no-autostart'] if new_resource.no_autostart == true
 
+  # secure if kerberos enabled
+  args += ['-secure'] if mapr_secure?
+
+  args += ['-genkeys -K -P mapr/`hostname -f`'] if gen_keys?
+
   # additional args
   additional_args = new_resource.args || []
   # Flatten any hashes or multi-level arrays within additional_args to arrays

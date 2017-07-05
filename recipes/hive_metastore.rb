@@ -60,6 +60,15 @@ unless scratch_dir == '/tmp/hive-${user.name}'
 end
 
 execute 'hive-mfs-warehousedir' do
+  command "kinit -kt /opt/mapr/conf/mapr.keytab mapr/`hostname -f`"
+  timeout 300
+  user m_user
+  group m_group
+  only_if mapr_secure?
+  action :nothing
+end
+
+execute 'hive-mfs-warehousedir' do
   command "hadoop fs -mkdir -p #{warehouse_dir} && hadoop fs -chown #{m_user}:#{m_group} #{warehouse_dir} && hadoop fs -chmod 1777 #{warehouse_dir}"
   timeout 300
   user m_user
