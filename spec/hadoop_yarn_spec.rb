@@ -14,11 +14,11 @@ describe 'hadoop_mapr::hadoop_yarn' do
       expect(chef_run).to install_package('mapr-hadoop-core')
     end
 
-    %w(
+    %w[
       core-site.xml
       mapred-site.xml
       yarn-site.xml
-    ).each do |file|
+    ].each do |file|
       it "creates #{file} from template" do
         expect(chef_run).to create_template(file)
       end
