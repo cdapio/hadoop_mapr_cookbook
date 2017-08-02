@@ -6,3 +6,6 @@ Style/SpaceBeforeFirstArg:
   Enabled: false
 Metrics/BlockLength:
   Enabled: false
+# prevent false positive for the Chef lazy DSL syntax
+AmbiguousBlockAssociation:
+  Enabled: false
