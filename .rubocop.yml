@@ -9,3 +9,6 @@ Metrics/BlockLength:
 # prevent false positive for the Chef lazy DSL syntax
 AmbiguousBlockAssociation:
   Enabled: false
+# delimeters changed across rubocop versions we test with, so must disable
+Style/PercentLiteralDelimiters:
+  Enabled: false
