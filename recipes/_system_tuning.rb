@@ -45,7 +45,7 @@ end
 # Disable transparent_hugepages compaction
 # Note, MapR documentation is inconsistent whether to disable THP compaction or THP altogether
 # COOK-57 location can vary within CentOS
-%w(transparent_hugepage redhat_transparent_hugepage).each do |dir|
+%w[transparent_hugepage redhat_transparent_hugepage].each do |dir|
   thp_defrag = "/sys/kernel/mm/#{dir}/defrag"
   next unless ::File.file?(thp_defrag)
 

@@ -8,7 +8,7 @@ describe 'hadoop_mapr::repo' do
       end.converge(described_recipe)
     end
 
-    %w(maprtech maprecosystem).each do |repo|
+    %w[maprtech maprecosystem].each do |repo|
       it "add #{repo} yum_repository" do
         expect(chef_run).to add_yum_repository(repo)
       end
@@ -22,7 +22,7 @@ describe 'hadoop_mapr::repo' do
       end.converge(described_recipe)
     end
 
-    %w(maprtech maprecosystem).each do |repo|
+    %w[maprtech maprecosystem].each do |repo|
       it "add #{repo} apt_repository" do
         expect(chef_run).to add_apt_repository(repo)
       end
