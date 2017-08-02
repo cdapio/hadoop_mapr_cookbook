@@ -82,11 +82,20 @@ when 'debian'
                              "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/ubuntu"
                            end
 
+  # Distribution/Component changed in 5.2.1, per http://maprdocs.mapr.com/home/AdvancedInstallation/AddingMapRreposUbuntu.html
+  if mapr_release.to_f < 5.2 || mapr_release == '5.2.0'
+    apt_repo_distribution = 'mapr'
+    apt_repo_components = ['optional']
+  else # 5.2.1 and later
+    apt_repo_distribution = 'binary'
+    apt_repo_components = ['trusty']
+  end
+
   apt_repository 'maprtech' do
     uri apt_repo_url
     key apt_repo_key_url
-    distribution 'mapr'
-    components ['optional']
+    distribution apt_repo_distribution
+    components apt_repo_components
     action :add
   end
 
@@ -103,7 +112,8 @@ when 'debian'
     uri apt_ecosystem_repo_url
     key apt_repo_key_url
     trusted true
-    distribution 'binary/'
+    distribution 'binary'
+    components ['trusty']
     action :add
     only_if { mapr_release.to_f >= 5.2 }
   end
