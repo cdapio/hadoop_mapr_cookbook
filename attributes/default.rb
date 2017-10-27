@@ -22,6 +22,9 @@ default['java']['install_flavor'] = 'oracle'
 default['java']['jdk_version'] = 7
 default['java']['oracle']['accept_oracle_download_terms'] = true
 
+# MapR repo url
+default['hadoop_mapr']['release_url'] = 'http://package.mapr.com/releases'
+
 # MapR version to install
 default['hadoop_mapr']['distribution_version'] = '5.0.0'
 default['hadoop_mapr']['mep_version'] = '1.1'

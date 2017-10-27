@@ -19,6 +19,7 @@
 
 mapr_release = node['hadoop_mapr']['distribution_version'].gsub(/^v/, '')
 mep_release = node['hadoop_mapr']['mep_version'].to_f
+release_url = node['hadoop_mapr']['release_url']
 
 # Per http://doc.mapr.com/display/MapR/JDK+Support+Matrix
 if mapr_release.to_i >= 4 && node.key?('java') && node['java'].key?('jdk_version') && node['java']['jdk_version'].to_i < 7
@@ -29,14 +30,15 @@ case node['platform_family']
 when 'rhel', 'amazon' # ~FC024
   # Ensure that we have the proper LWRPs available
   include_recipe 'yum'
+  yum_repo_url = "http://package.mapr.com/v6.0.0-rc1/v#{mapr_release}/redhat"
 
-  yum_repo_url = "http://package.mapr.com/releases/v#{mapr_release}/redhat"
-  yum_repo_key_url = 'http://package.mapr.com/releases/pub/maprgpg.key'
+  yum_repo_url = "#{release_url}/v#{mapr_release}/redhat"
+  yum_repo_key_url = "#{release_url}/pub/maprgpg.key"
 
   yum_ecosystem_repo_url = if mapr_release.to_f >= 5.2
-                             "http://package.mapr.com/releases/MEP/MEP-#{mep_release}/redhat"
+                             "#{release_url}/MEP/MEP-#{mep_release}/redhat"
                            else
-                             "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/redhat"
+                             "#{release_url}/ecosystem-#{mapr_release.to_i}.x/redhat"
                            end
 
   yum_repository 'maprtech' do
@@ -73,13 +75,13 @@ when 'debian'
   # Ensure that we have the proper LWRPs available
   include_recipe 'apt'
 
-  apt_repo_url = "http://package.mapr.com/releases/v#{mapr_release}/ubuntu"
-  apt_repo_key_url = 'http://package.mapr.com/releases/pub/maprgpg.key'
+  apt_repo_url = "#{release_url}/v#{mapr_release}/ubuntu"
+  apt_repo_key_url = "#{release_url}/pub/maprgpg.key"
 
   apt_ecosystem_repo_url = if mapr_release.to_f >= 5.2
-                             "http://package.mapr.com/releases/MEP/MEP-#{mep_release}/ubuntu"
+                             "#{release_url}/MEP/MEP-#{mep_release}/ubuntu"
                            else
-                             "http://package.mapr.com/releases/ecosystem-#{mapr_release.to_i}.x/ubuntu"
+                             "#{release_url}/ecosystem-#{mapr_release.to_i}.x/ubuntu"
                            end
 
   # Distribution/Component changed in 5.2.1, per http://maprdocs.mapr.com/home/AdvancedInstallation/AddingMapRreposUbuntu.html
